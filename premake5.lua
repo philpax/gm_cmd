@@ -4,7 +4,7 @@ RequireDefaultlibs()
 
 SOLUTION 	"example-module"
 
-targetdir	"bins"
+targetdir	"bin"
 INCLUDES	"source_sdk"
 INCLUDES 	"gmod_sdk"
 defines		{"NDEBUG"}
