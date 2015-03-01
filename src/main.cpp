@@ -22,10 +22,11 @@ std::string exec(char* cmd) {
 
 int exec(lua_State *state)
 {
-	LUA->CheckType( 1, GLua::TYPE_STRING );
-	char* cmd = LUA->GetString( 1 );
+	LUA->CheckString(1)
+	const char* cmd = LUA->GetString( 1 );
 	char* result = exec(cmd).c_str();
-	LUA->Push( result );
+	
+	LUA->PushString( result );
 
 	return 1;
 }
