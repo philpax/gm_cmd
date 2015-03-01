@@ -20,20 +20,26 @@ std::string exec(char* cmd) {
     return result;
 }
 
-LUA_FUNCTION( ServerExec )
+int exec(lua_State *state)
 {
-	L->CheckType( 1, GLua::TYPE_STRING );
+	LUA->CheckType( 1, GLua::TYPE_STRING );
 	char* cmd = L->GetString( 1 );
 	char* result = exec(cmd).c_str();
-	L->Push( result );
+	LUA->Push( result );
 
 	return 1;
 }
 
 GMOD_MODULE_OPEN()
 {
-	L = Lua();
-	L->SetGlobal( "ServerExec", ServerExec );
+	LUA->PushSpecial(SPECIAL_GLOB);
+	LUA->CreateTable();
+
+	LUA->PushCFunction(exec);
+	LUA->SetField(-2, "exec");
+
+	LUA->SetField(-2, "server");
+	LUA->Pop(1);
  
 	//ConMsg("gmsv_cmd_linux started!");
 	return 0;
