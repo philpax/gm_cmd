@@ -7,30 +7,25 @@
 using namespace std;
 using namespace GarrysMod::Lua;
 
+#ifdef __linux__
+#define POPEN popen
+#define PCLOSE pclose
+#elif _WIN32
+#define POPEN _popen
+#define PCLOSE _pclose
+#endif
+
 std::string exec(char* cmd) {
-	#ifdef __linux__ 
-		FILE* pipe = popen(cmd, "r");
-		if (!pipe) return "ERROR";
-		char buffer[256];
-		std::string result = "";
-		while(!feof(pipe)) {
-			if(fgets(buffer, 256, pipe) != NULL)
-				result += buffer;
-		}
-		pclose(pipe);
-		return result;
-	#elif _WIN32
-		FILE* pipe = _popen(cmd, "r");
-		if (!pipe) return "ERROR";
-		char buffer[256];
-		std::string result = "";
-		while(!feof(pipe)) {
-			if(fgets(buffer, 256, pipe) != NULL)
-				result += buffer;
-		}
-		_pclose(pipe);
-		return result;
-	#endif
+	FILE* pipe = POPEN(cmd, "r");
+	if (!pipe) return "ERROR";
+	char buffer[256];
+	std::string result = "";
+	while(!feof(pipe)) {
+		if(fgets(buffer, 256, pipe) != NULL)
+			result += buffer;
+	}
+	PCLOSE(pipe);
+	return result;	
 }
 
 int exec(lua_State *state)
