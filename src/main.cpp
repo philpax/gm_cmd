@@ -8,16 +8,29 @@ using namespace std;
 using namespace GarrysMod::Lua;
 
 std::string exec(char* cmd) {
-    FILE* pipe = popen(cmd, "r");
-    if (!pipe) return "ERROR";
-    char buffer[256];
-    std::string result = "";
-    while(!feof(pipe)) {
-    	if(fgets(buffer, 256, pipe) != NULL)
-    		result += buffer;
-    }
-    pclose(pipe);
-    return result;
+	#ifdef __linux__ 
+		FILE* pipe = popen(cmd, "r");
+		if (!pipe) return "ERROR";
+		char buffer[256];
+		std::string result = "";
+		while(!feof(pipe)) {
+			if(fgets(buffer, 256, pipe) != NULL)
+				result += buffer;
+		}
+		pclose(pipe);
+		return result;
+	#elif _WIN32
+		FILE* pipe = _popen(cmd, "r");
+		if (!pipe) return "ERROR";
+		char buffer[256];
+		std::string result = "";
+		while(!feof(pipe)) {
+			if(fgets(buffer, 256, pipe) != NULL)
+				result += buffer;
+		}
+		_pclose(pipe);
+		return result;
+	#endif
 }
 
 int exec(lua_State *state)
@@ -41,7 +54,7 @@ GMOD_MODULE_OPEN()
 
 	LUA->SetField(-2, "server");
 	LUA->Pop(1);
- 
+
 	//ConMsg("gmsv_cmd_linux started!");
 	return 0;
 }
