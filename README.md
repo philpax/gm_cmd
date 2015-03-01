@@ -1,8 +1,16 @@
 gm_cmd
 ==========
 
-Usage:
+Builds:
+-------
 
+| Build Page | Latest Build |
+|-------------------------------------------------|--------------------------------------------------------------------------------------------------|
+| [Linux](http://build.glua.me/job/gm_cmd_linux/) | [Linux](http://build.glua.me/job/gm_cmd_linux/lastSuccessfulBuild/artifact/bin/gm_cmd_linux.dll) |
+| [Windows](http://build.glua.me/job/gm_cmd_win/) | [Windows](http://build.glua.me/job/gm_cmd_win/lastSuccessfulBuild/artifact/bin/gm_cmd_win32.dll) |
+
+Usage:
+--------
 ```lua
 require 'cmd'
 print(server.exec("ping 8.8.8.8"))
