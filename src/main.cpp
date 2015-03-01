@@ -23,7 +23,7 @@ std::string exec(char* cmd) {
 int exec(lua_State *state)
 {
 	LUA->CheckType( 1, GLua::TYPE_STRING );
-	char* cmd = L->GetString( 1 );
+	char* cmd = LUA->GetString( 1 );
 	char* result = exec(cmd).c_str();
 	LUA->Push( result );
 
