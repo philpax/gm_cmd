@@ -12,5 +12,4 @@ WINDOWS()
 LINUX()
 
 PROJECT()
-SOURCE_SDK_LINKS()
 configuration 		"linux"
