@@ -4,9 +4,6 @@
 
 #include "GarrysMod/Lua/Interface.h"
 
-#include "tier0/dbg.h"
-#include "tier1/interface.h"
-
 using namespace std;
 using namespace GarrysMod::Lua;
 
