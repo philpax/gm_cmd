@@ -4,7 +4,6 @@
 
 #include "GarrysMod/Lua/Interface.h"
 
-#include "Color.h"
 #include "tier0/dbg.h"
 #include "tier1/interface.h"
 
@@ -39,12 +38,12 @@ GMOD_MODULE_OPEN()
 	L = Lua();
 	L->SetGlobal( "ServerExec", ServerExec );
  
-	ConMsg("gmsv_cmd_linux started!");
+	//ConMsg("gmsv_cmd_linux started!");
 	return 0;
 }
 
 GMOD_MODULE_CLOSE()
 {
-	ConMsg("gmsv_cmd_linux stopped!");
+	//ConMsg("gmsv_cmd_linux stopped!");
 	return 0;
 }
