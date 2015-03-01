@@ -10,10 +10,10 @@ using namespace GarrysMod::Lua;
 std::string exec(char* cmd) {
     FILE* pipe = popen(cmd, "r");
     if (!pipe) return "ERROR";
-    char buffer[128];
+    char buffer[256];
     std::string result = "";
     while(!feof(pipe)) {
-    	if(fgets(buffer, 128, pipe) != NULL)
+    	if(fgets(buffer, 256, pipe) != NULL)
     		result += buffer;
     }
     pclose(pipe);
