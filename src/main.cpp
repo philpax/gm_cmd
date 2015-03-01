@@ -24,7 +24,7 @@ int exec(lua_State *state)
 {
 	LUA->CheckString(1);
 	const char* cmd = LUA->GetString( 1 );
-	char* result = exec(cmd).c_str();
+	const char* result = exec((char *)cmd).c_str();
 	
 	LUA->PushString( result );
 
