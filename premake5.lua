@@ -2,10 +2,9 @@ dofile("../../common.lua")
 
 RequireDefaultlibs()
 
-SOLUTION 	"example-module"
+SOLUTION 	"cmd"
 
 targetdir	"bin"
-INCLUDES	"source_sdk"
 INCLUDES 	"gmod_sdk"
 defines		{"NDEBUG"}
 
@@ -14,5 +13,4 @@ LINUX()
 
 PROJECT()
 SOURCE_SDK_LINKS()
-configuration 		"windows"
 configuration 		"linux"
