@@ -32,9 +32,9 @@ int exec(lua_State *state)
 {
 	LUA->CheckString(1);
 	const char* cmd = LUA->GetString( 1 );
-	const char* result = exec(cmd).c_str();
+	std::string result = exec(cmd);
 	
-	LUA->PushString( result );
+	LUA->PushString( result.c_str() );
 
 	return 1;
 }
